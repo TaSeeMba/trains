@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace trains
 {
-  class Node
+  public class Node
   {
     public String name;
     public Boolean visited;
@@ -14,7 +14,24 @@ namespace trains
     public Node (String name)
     {
       this.name = name;
-      this.visited = false;
+      visited = false;
+    }
+
+    
+    public override bool Equals(Object b)
+    {
+      if (b == null || b.GetType() != GetType())
+      {
+        return false;
+      }
+      Node bx = (Node)b;
+      return this.name.Equals(bx.name);
+    }
+
+    public override int GetHashCode()
+    {
+      if (this.name == null) return 0;
+      return this.name.GetHashCode();
     }
   }
 }

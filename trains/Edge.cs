@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace trains
 {
-  class Edge
+  public class Edge
   {
     // Origin town
     public Node origin;

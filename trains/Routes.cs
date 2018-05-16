@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace trains
 {
-  class Routes
+  public class Routes
   {
     public Dictionary<Node, Edge> routeTable;
 
@@ -27,7 +27,7 @@ namespace trains
       int distance, depth;
       distance = depth = 0;
 
-      for (int i = 0; i < towns.Count; i++)
+      for (int i = 0; i < towns.Count - 1; i++)
       {
         Node town = towns.ElementAt(i);
         if (this.routeTable.ContainsKey(town))
@@ -105,7 +105,7 @@ namespace trains
       return routes;
     }
 
-    public int shortestRoute(Node start, Node end)
+    public int getShortestRoute(Node start, Node end)
     {
 		  return computeShortestRoute(start, end, 0, 0);
 	  }

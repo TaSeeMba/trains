@@ -1,3 +1,7 @@
 trains/obj/
 trains/.vs/
 trains/bin/
+trainsTests/bin/
+trainsTests/obj/
+trains/packages/MSTest.TestAdapter.1.2.0/MSTest.TestAdapter.1.2.0.nupkg
+trains/packages/
