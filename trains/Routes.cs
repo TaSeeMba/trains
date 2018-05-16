@@ -12,11 +12,11 @@ namespace trains
 
     public Routes()
     {
-      this.routeTable = new Dictionary<Node, Edge>(); 
+      this.routeTable = new Dictionary<Node, Edge>();
     }
 
     // Calculate distance of a specific path
-    public int getDistanceAlongRoute(List<Node> towns) 
+    public int getDistanceAlongRoute(List<Node> towns)
     {
       // there is no distance between null, zero or one towns
       if (towns == null || towns.Count < 2)
@@ -24,15 +24,15 @@ namespace trains
         return 0;
       }
 
-      int distance, depth; 
+      int distance, depth;
       distance = depth = 0;
 
       for (int i = 0; i < towns.Count; i++)
       {
-        Node town = towns.ElementAt(i); 
+        Node town = towns.ElementAt(i);
         if (this.routeTable.ContainsKey(town))
         {
-          Edge route; 
+          Edge route;
           bool hasValue = this.routeTable.TryGetValue(town, out Edge value);
           if (hasValue)
           {
@@ -105,7 +105,12 @@ namespace trains
       return routes;
     }
 
-    public int findShortestRoute(Node origin, Node destination, int weight, int shortestRoute)
+    public int shortestRoute(Node start, Node end)
+    {
+		  return computeShortestRoute(start, end, 0, 0);
+	  }
+
+    public int computeShortestRoute(Node origin, Node destination, int weight, int shortestRoute)
     {
       // Sanity check to verify that origin and destination nodes exist in the route table
       if (this.routeTable.ContainsKey(origin) && this.routeTable.ContainsKey(destination))
@@ -130,11 +135,11 @@ namespace trains
                 shortestRoute = weight;
               }
               origin.visited = false;
-              return shortestRoute; 
+              return shortestRoute;
             }
             else if (!edge.destination.visited)
             {
-              shortestRoute = findShortestRoute(edge.destination, destination, weight, shortestRoute);
+              shortestRoute = computeShortestRoute(edge.destination, destination, weight, shortestRoute);
               weight -= edge.weight;
             }
             edge = edge.next;
@@ -147,6 +152,54 @@ namespace trains
       }
       origin.visited = false;
       return shortestRoute;
+    }
+
+    public int getNumberOfRoutesWithin(Node start, Node end, int maxDistance) 
+    {
+		  return computeNumberOfRoutesWithin(start, end, 0, maxDistance);
+	  }
+
+    public int computeNumberOfRoutesWithin(Node origin, Node destination, int weight, int maxDistance)
+    {
+      int routes = 0;
+      // Sanity check to verify that origin and destination nodes exist in the route table
+      if (this.routeTable.ContainsKey(origin) && this.routeTable.ContainsKey(destination))
+      {
+        Edge edge;
+        bool hasValue = this.routeTable.TryGetValue(origin, out Edge value);
+        if (hasValue)
+        {
+          edge = value;
+          while (edge != null)
+          {
+            weight += edge.weight;
+            if (weight <= maxDistance)
+            {
+              if (edge.destination.Equals(destination))
+              {
+                routes++;
+                routes += computeNumberOfRoutesWithin(edge.destination, destination, weight, maxDistance);
+                edge = edge.next;
+                continue;
+              }
+              else
+              {
+                routes += computeNumberOfRoutesWithin(edge.destination, destination, weight, maxDistance);
+                weight -= edge.weight;  
+              }
+            }
+            else
+              weight -= edge.weight;
+
+            edge = edge.next;
+          }
+        }
+      }
+      else
+      {
+        throw new Exception("ROUTE DOESNT EXIST");
+      }
+      return routes;
     }
   }
 }
