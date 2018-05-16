@@ -43,12 +43,40 @@ namespace trains.Tests
       Assert.AreEqual(9, graph.getDistanceAlongRoute(route));
     }
 
+    // Test distance between route A-E-D
+    [TestMethod()]
+    [ExpectedException(typeof(Exception), "ROUTE DOESNT EXIST")]
+    public void TestDistanceBetween_AED()
+    {
+      List<Node> route = new List<Node>();
+      route.Add(a);
+      route.Add(e);
+      route.Add(d);
+      Assert.AreEqual(-1, graph.getDistanceAlongRoute(route));
+    }
+
     // Test shortest route between town A and town C
     [TestMethod]
     public void TestShortestRoute_AC()
     {
       int shortestRoute = graph.getShortestRoute(a, c);
       Assert.AreEqual(9, shortestRoute);
+    }
+
+    // Test shortest route between town B and town B
+    [TestMethod]
+    public void TestShortestRoute_BB()
+    {
+      int shortestRoute = graph.getShortestRoute(b, b);
+      Assert.AreEqual(9, shortestRoute);
+    }
+
+    // Test number of routes between town A and town C with exactly 4 stops
+    [TestMethod]
+    public void TestNumberOfStops_AC4()
+    {
+      int numberOfRoutesWithin = graph.getNumberOfStops(a, c, 4);
+      Assert.AreEqual(4, numberOfRoutesWithin);
     }
 
     // Test number of routes between town C and town C with distance less than 30

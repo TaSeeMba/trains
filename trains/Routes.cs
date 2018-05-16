@@ -52,16 +52,22 @@ namespace trains
         }
         else
         {
-          // throw an exception
+          throw new Exception("ROUTE DOESNT EXIST");
         }
       }
 
       // If edge depth is not equal to vertex - 1, it is safe to assume that one or more routes do not exist
       if (depth != towns.Count - 1)
       {
-        // throw an exception
+        throw new Exception("ROUTE DOESNT EXIST");
       }
       return distance;
+    }
+
+    public int getNumberOfStops(Node start, Node end, int maxStops)
+    {
+      //Wrapper to maintain depth of traversal
+      return findNumberOfRoutes(start, end, 0, maxStops);
     }
 
     public int findNumberOfRoutes(Node origin, Node destination, int depth, int maxStops)
@@ -92,6 +98,7 @@ namespace trains
             else if (!edge.destination.visited)
             {
               routes += findNumberOfRoutes(edge.destination, destination, depth, maxStops);
+              depth--;
             }
             edge = edge.next;
           }
@@ -107,8 +114,8 @@ namespace trains
 
     public int getShortestRoute(Node start, Node end)
     {
-		  return computeShortestRoute(start, end, 0, 0);
-	  }
+      return computeShortestRoute(start, end, 0, 0);
+    }
 
     public int computeShortestRoute(Node origin, Node destination, int weight, int shortestRoute)
     {
@@ -154,10 +161,10 @@ namespace trains
       return shortestRoute;
     }
 
-    public int getNumberOfRoutesWithin(Node start, Node end, int maxDistance) 
+    public int getNumberOfRoutesWithin(Node start, Node end, int maxDistance)
     {
-		  return computeNumberOfRoutesWithin(start, end, 0, maxDistance);
-	  }
+      return computeNumberOfRoutesWithin(start, end, 0, maxDistance);
+    }
 
     public int computeNumberOfRoutesWithin(Node origin, Node destination, int weight, int maxDistance)
     {
@@ -185,7 +192,7 @@ namespace trains
               else
               {
                 routes += computeNumberOfRoutesWithin(edge.destination, destination, weight, maxDistance);
-                weight -= edge.weight;  
+                weight -= edge.weight;
               }
             }
             else
