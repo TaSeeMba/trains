@@ -64,12 +64,14 @@ namespace trains
       return distance;
     }
 
+    // Recursive wrapper for number of stops function 
     public int getNumberOfStops(Node start, Node end, int maxStops)
     {
       //Wrapper to maintain depth of traversal
       return findNumberOfRoutes(start, end, 0, maxStops);
     }
 
+    // Finds number of stops between origin and destination upto a certain maximum number of stops
     public int findNumberOfRoutes(Node origin, Node destination, int depth, int maxStops)
     {
       int routes = 0;
@@ -112,11 +114,13 @@ namespace trains
       return routes;
     }
 
+    // Wrapper for recursive shortest route function
     public int getShortestRoute(Node start, Node end)
     {
       return computeShortestRoute(start, end, 0, 0);
     }
 
+    // Finds the shortest route between two nodes in the graph network
     public int computeShortestRoute(Node origin, Node destination, int weight, int shortestRoute)
     {
       // Sanity check to verify that origin and destination nodes exist in the route table
@@ -161,11 +165,14 @@ namespace trains
       return shortestRoute;
     }
 
+    // Wrapper for recursive number of routes function
     public int getNumberOfRoutesWithin(Node start, Node end, int maxDistance)
     {
       return computeNumberOfRoutesWithin(start, end, 0, maxDistance);
     }
 
+    // Finds the number of routes between two nodes in the graph network
+    // Traverses all possible routes from the origin node and checks if it is a destination
     public int computeNumberOfRoutesWithin(Node origin, Node destination, int weight, int maxDistance)
     {
       int routes = 0;
