@@ -12,8 +12,15 @@ namespace trains
   {
     static void Main(string[] args)
     {
-      List<String> nodes = readTextFile("nodes.json");
-      List<String> edges = readTextFile("edges.json");
+      // read nodes and edges plain text data from file system
+      List<String> nodesPT = readTextFile("nodes.json");
+      List<String> edgesPT = readTextFile("edges.json");
+
+      // TODO : convert plain text data of nodes and edges to models applied in this project 
+
+      // TODO : generate graph from nodes and edges data
+
+      // TODO : start interactive console
     }
 
     // reads text file from JSON file from file system.
