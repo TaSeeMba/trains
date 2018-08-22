@@ -43,7 +43,6 @@ Output 7: 3
 Output 8: 9
 Output 9: 9
 Output 10: 7
-==========
 
 ## Further enhancements - ToDo
 - Improve the the console application to make it more user interactive (this is current WIP).
