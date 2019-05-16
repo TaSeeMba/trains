@@ -1,6 +1,10 @@
 # Trains
 The purpose of this problem is to help the railroad provide its customers with information about the routes between towns. This is a directed graph problem.  
-![alt text](trains.gif)
+
+<p align="center">
+  <img width="400" height="250" src="trains.gif">
+</p>
+
 ## Repository Contents
 A C# console application and unit tests for the application. Refer to the project level readme file for input rules. 
 
