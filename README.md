@@ -1,12 +1,14 @@
 # Trains
-The purpose of this problem is to help the railroad provide its customers with information about the routes between towns. This is a directed graph problem.  
+This application provides an algorithm for calculating distances between locations, finding number of routes between destinations, finding routes between locations and recommending optimized solutions to travel related queries.  
+
+To simplify demonstration of the algorithm, a real-world example with different scenario use-cases is illustrated below.
 
 <p align="center">
-  <img width="400" height="250" src="trains.gif">
+  <img src="trains.gif">
 </p>
 
 ## Repository Contents
-A C# console application and unit tests for the application. Refer to the project level readme file for input rules. 
+A C# console application and unit tests for the application. Refer to the project level ReadMe file for input rules. 
 
 ## Problem Statement
 **Problem:** The local commuter railroad services a number of towns in Kiwiland. Because of monetary concerns, all of the tracks are 'one-way.' That is, a route from Kaitaia to Invercargill does not imply
